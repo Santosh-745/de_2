@@ -56,7 +56,7 @@
 	
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Path Finder</a>
+			<a class="navbar-brand" href="/de_2/homepage.php">Virtual Guidance</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			  <span class="navbar-toggler-icon"></span>
 			</button>
@@ -78,7 +78,6 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="login.php">Log-in</a></li>
                         <li><a class="dropdown-item" href="register.php">Sign-In</a></li>
-                        <li><a class="dropdown-item" href="logout.php">Log-Out</a></li>
                     </ul>
                 </li>
 			  </ul>
@@ -90,7 +89,7 @@
 
 	<div class="search_container">
 	  <!-- <h2>Search Here</h2> -->
-	  <form action="/de_1/search.php" method="get">
+	  <form action="/de_2/search.php" method="get">
 		<div class="form-group" >
 		  <input name="search_query" placeholder="FInd Your Destiny" type="text" class="form-control">
 		</div>
@@ -107,7 +106,7 @@
 		?>  
 			<div class="card">
 				<h4>
-					<img src="<?php echo $rowdata['image'] ?>" class="cardimg">
+					<img src="<?php echo $rowdata['img'] ?>" class="cardimg">
 					<?php echo $rowdata['Category'] ?>
 				</h4>
 				<a href="list.php?category=<?php echo $rowdata['Category'] ?>" >

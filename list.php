@@ -18,21 +18,27 @@
   </head>
   <style>
 	  .table{
-		  width: 80vw;
-      margin: 3vh 0vw 0vh 10vw;
+		  width: 70vw;
+      margin: 7vh 0vw 0vh 18vw;
  	  }
+    .header{
+		  text-align: center;
+		  margin: 2vw 0vw 0vw 0vw;
+		  text-transform: uppercase;
+		  color: rgb(33, 34, 34);
+	  }
   </style>
   <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Path Finder</a>
+			<a class="navbar-brand" href="/de_2/homepage.php">Virtual Guidance</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			  <span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 			  <ul class="navbar-nav">
 				<li class="nav-item">
-				  <a class="nav-link active" aria-current="page" href="#">Home</a>
+				  <a class="nav-link active" aria-current="page" href="/de_2/homepage.php">Home</a>
 				</li>
 				<li class="nav-item">
 				  <a class="nav-link" href="#">About Us</a>
@@ -40,14 +46,29 @@
 				<li class="nav-item">
 				  <a class="nav-link" href="#">Contact Us</a>
 				</li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Action
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="login.php">Log-in</a></li>
+              <li><a class="dropdown-item" href="register.php">Sign-In</a></li>
+          </ul>
+        </li>
 			  </ul>
 			</div>
 		</div>
 	</nav>
+  <div class="header">
+		<h2>
+			Results related <?php $category = $_GET['category'];
+                            echo $category;?>
+		</h2>
+	</div>
 	<table class="table">
 		<thead class="thead-dark">
 		  <tr>
-			<th scope="col">Image</th>
+			<th scope="col">Sr_no</th>
             <th scope="col">Title</th>
             <th scope="col">Answered By</th>
             <th scope="col">Solution</th>
@@ -55,20 +76,19 @@
 		</thead>
 		<tbody>
   <?php
-        $category = $_GET['category'];
         // echo $category;
         // $query = "SELECT * FROM home_data where title='.$category.'";
         // $result = $connect->query($query);
-        $iab_data = $conn->prepare("SELECT * FROM home_data where title=? ");
+        $iab_data = $conn->prepare("SELECT * FROM home_data where category=? ");
         $iab_data->bindParam(1, $category);
         $iab_data->execute();
         $temp = 1;
         while ($rowdata = $iab_data->fetch(PDO::FETCH_ASSOC)) { ?>
           <tr>  
-            <td >mark</td>
+            <td ><?php echo $temp++; ?></td>
             <td ><?php echo $rowdata['title']?></td>
             <td><?php echo $rowdata['Answered_by']?></td>
-            <td><a href="stap.php?id=<?php echo $rowdata['id']?>" ><button>Click Here</button> </a></td>
+            <td><a href="stap.php?id=<?php echo $rowdata['id']?>" ><button class="btn btn-primary">Click Here</button> </a></td>
           </tr>
   <?php  }  ?>
       </tbody>

@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
 
         //if row is false
         if($user === false){
-            echo '<script>aleart("invalid email or password")</script>';
+            echo '<script>alert("invalid email or password")</script>';
         }else{
             //Compare Passwords
             $validPassword = password_verify($passwordAttempt, $user['password']);
@@ -34,12 +34,18 @@ if(isset($_POST['submit'])){
             if($validPassword){
                 $_SESSION['user'] = $user_login;
                 if($user['user_type'] === 'Faculty'){
+                    $_SESSION['faculty_loggedin'] = true;
+                    $_SESSION['student_loggedin'] = false;
+                    $_SESSION['username'] = $user;
                     echo '<script>window.location.replace("faculty.php")</script>';
-                }else if($user['user_type'] === 'Student'){
+                }elseif($user['user_type'] === 'Student'){
+                    $_SESSION['student_loggedin'] = true;
+                    $_SESSION['faculty_loggedin'] = false;
+                    $_SESSION['username'] = $user;
                     echo '<script>window.location.replace("student.php")</script>';
                 }
             }else{
-                echo '<script>aleart("invalid email or password")</script>';
+                echo '<script>alert("invalid email or password")</script>';
             }
         }
 
@@ -48,6 +54,7 @@ if(isset($_POST['submit'])){
         echo '<script>alert("'.$error.'");</script>';
     }
 }
+
 ?>
 
 
@@ -64,6 +71,30 @@ if(isset($_POST['submit'])){
 </head>
 
 <body>
+
+    <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/de_2/homepage.php">Virtual Guidance</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			  <span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+			  <ul class="navbar-nav">
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="homepage.php">Home</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">About Us</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">Contact Us</a>
+				</li>
+			  </ul>
+			</div>
+		 </div>
+	</nav>
+    </div>
 
     <div class="container mt-5 pl-5 col-6">
         <div class="row">
@@ -89,7 +120,7 @@ if(isset($_POST['submit'])){
             <div class="row mt-3">
                 <div class="col">
                     <div class="form-group">
-                        <button name="submit" class="btn btn-success" type="submit">SUBMIT</button>
+                        <button name="submit" class="btn btn-primary" type="submit">SUBMIT</button>
                     </div>
                 </div>
             </div>

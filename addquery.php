@@ -6,7 +6,7 @@
 		$title = $_POST['title'];
 		$desc = $_POST['description'];
 		$cat = $_POST['category'];
-		$iab_data = $conn->prepare("INSERT INTO `queries` (`title`, `description`, `date_time`) VALUES ('$title', '$desc', CURRENT_DATE());");
+		$iab_data = $conn->prepare("INSERT INTO `queries` (`title`, `description`, `category`,`date_time`) VALUES ('$title', '$desc','$cat', CURRENT_DATE());");
 		if($iab_data->execute())
 		{
 			$inserted = TRUE;
@@ -31,23 +31,24 @@
 		  text-align: center;
 		  margin: 2vw 0vw 0vw 0vw;
 		  text-transform: uppercase;
-		  color: rgb(164, 166, 167);
+		  color: rgb(33, 34, 34);
+		  /* font-style: inherit; */
 	  }
 	  .labels{
-		  margin: 1vw 0vw 1vw 24vw;
+		  margin: 1vw 0vw 1vw 25vw;
 	  }
 	  .inputs{
-		margin: 0vw 23vw 0vw 24vw;
+		margin: 0vw 23vw 0vw 25vw;
 		width: 50vw;
 	  }
 	  .btn{
-		  margin: 2vw 0vw 0vw 24vw;
+		  margin: 2vw 0vw 0vw 25vw;
 	  }
   </style>
   <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Path Finder</a>
+			<a class="navbar-brand" href="/de_2/student.php">Virtual Guidance</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			  <span class="navbar-toggler-icon"></span>
 			</button>
